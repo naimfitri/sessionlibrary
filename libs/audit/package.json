@@ -1,16 +1,20 @@
 {
-  "name": "@app/audit",
-  "version": "0.0.1",
+  "name": "session-audit",
+  "version": "0.0.3",
   "private": false, 
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "dependencies": {
     
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naimfitri/sessionlibrary.git"
+  },
   "peerDependencies": {
     "@nestjs/common": "^9.0.0 || ^10.0.0 || ^11.0.0",
     "@nestjs/core": "^9.0.0 || ^10.0.0 || ^11.0.0",
-    "@nestjs/typeorm": "^9.0.0 || ^10.0.0",
+    "@nestjs/typeorm": "^9.0.0 || ^11.0.0",
     "nestjs-cls": "^3.0.0 || ^4.0.0 || ^6.0.0",
     "typeorm": "^0.3.0",
     "rxjs": "^7.0.0"

@@ -7,6 +7,7 @@ import {
   NestInterceptor,
   ExecutionContext,
   CallHandler,
+  Logger,
 } from '@nestjs/common';
 import { ClsModule, ClsService } from 'nestjs-cls';
 import { APP_INTERCEPTOR } from '@nestjs/core';
@@ -20,24 +21,36 @@ export interface AuditModuleOptions {
 const AUDIT_MODULE_OPTIONS = 'AUDIT_MODULE_OPTIONS';
 
 @Injectable()
-class ClsUserInterceptor implements NestInterceptor {
+export class ClsUserInterceptor implements NestInterceptor {
+  private readonly logger = new Logger(ClsUserInterceptor.name);
+
   constructor(
     private readonly cls: ClsService,
     @Inject(AUDIT_MODULE_OPTIONS)
     private readonly options: AuditModuleOptions,
-  ) {}
+  ) {
+    this.logger.log('ClsUserInterceptor initialized');
+  }
 
   intercept(context: ExecutionContext, next: CallHandler) {
-    const req = context.switchToHttp().getRequest();
-    let userId: string | undefined;
+    this.logger.debug('Interceptor called');
+    // Run the entire request handler within a CLS context
+    return this.cls.run(() => {
+      const req = context.switchToHttp().getRequest();
+      let userId: string | undefined;
 
-    if (req && typeof this.options.getUserIdFromRequest === 'function') {
-      userId = this.options.getUserIdFromRequest(req);
-    }
+      if (req && typeof this.options.getUserIdFromRequest === 'function') {
+        userId = this.options.getUserIdFromRequest(req);
+        this.logger.debug(`getUserIdFromRequest returned: ${userId}`);
+        this.logger.debug(`Request user: ${JSON.stringify(req.user)}`);
+      }
 
-    this.cls.set('userId', userId ?? null);
+      this.cls.set('userId', userId ?? null);
+      const clsId = this.cls.getId();
+      this.logger.debug(`Set userId in CLS (ID: ${clsId}): ${userId ?? 'null'}`);
 
-    return next.handle();
+      return next.handle();
+    });
   }
 }
 @Global()
@@ -61,8 +74,23 @@ export class AuditModule {
 
     return {
       module: AuditModule,
-      imports: [ClsModule, ...(options.imports || [])],
-      providers: [AuditSubscriber, optionsProvider, interceptorProvider],
+      imports: [
+        ClsModule.forRoot({
+          global: true,
+          middleware: { 
+            mount: false, // Disable middleware, use interceptor instead
+          },
+        }), 
+        ...(options.imports || [])
+      ],
+      providers: [
+        AuditSubscriber, 
+        AuditService, 
+        optionsProvider, 
+        ClsUserInterceptor,
+        interceptorProvider
+      ],
+      exports: [AuditSubscriber, AuditService],
     };
   }
 }
