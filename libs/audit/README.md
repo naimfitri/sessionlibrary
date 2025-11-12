@@ -1,4 +1,4 @@
-# session-audit
+# nestjs-audit-session
 
 A NestJS library for automatic audit tracking of database entities. Automatically tracks who created and updated records, along with timestamps.
 
@@ -13,7 +13,7 @@ A NestJS library for automatic audit tracking of database entities. Automaticall
 ## Installation
 
 ```bash
-npm install session-audit
+npm install nestjs-audit-session
 ```
 
 ## Quick Start
@@ -24,7 +24,7 @@ In your root module (e.g., `app.module.ts`), import and configure the `AuditModu
 
 ```typescript
 import { Module } from '@nestjs/common';
-import { AuditModule } from 'session-audit';
+import { AuditModule } from 'nestjs-audit-session';
 
 @Module({
   imports: [
@@ -50,7 +50,7 @@ Make your entities extend `AuditedEntity`:
 
 ```typescript
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { AuditedEntity } from 'session-audit';
+import { AuditedEntity } from 'nestjs-audit-session';
 
 @Entity()
 export class User extends AuditedEntity {
@@ -131,7 +131,7 @@ For operations outside of HTTP requests (background tasks, cron jobs, etc.), you
 
 ```typescript
 import { Injectable } from '@nestjs/common';
-import { AuditService } from 'session-audit';
+import { AuditService } from 'nestjs-audit-session';
 import { Cron } from '@nestjs/schedule';
 
 @Injectable()
@@ -296,7 +296,7 @@ await this.auditService.runAsSystem(async () => {
 // app.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuditModule } from 'session-audit';
+import { AuditModule } from 'nestjs-audit-session';
 
 @Module({
   imports: [
@@ -314,7 +314,7 @@ export class AppModule {}
 
 // user.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
-import { AuditedEntity } from 'session-audit';
+import { AuditedEntity } from 'nestjs-audit-session';
 
 @Entity()
 export class User extends AuditedEntity {
