@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": false
+  },
+  "projects": {
+    "audit": {
+      "type": "library",
+      "root": "libs/audit",
+      "entryFile": "index",
+      "sourceRoot": "libs/audit/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/audit/tsconfig.lib.json",
+        "webpack": false,
+        "assets": [
+          {
+            "include": "package.json",
+            "watchAssets": true
+          }
+        ]
+      }
+    }
+  }
+}
