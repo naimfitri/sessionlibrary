@@ -26,6 +26,15 @@
           }
         ]
       }
+    },
+    "log": {
+      "type": "library",
+      "root": "libs/log",
+      "entryFile": "index",
+      "sourceRoot": "libs/log/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/log/tsconfig.lib.json"
+      }
     }
   }
 }

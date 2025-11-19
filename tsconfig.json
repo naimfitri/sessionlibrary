@@ -29,6 +29,12 @@
       "@app/audit/*": [
         "libs/audit/src/*",
         "libs/audit/src/*"
+      ],
+      "@app/log": [
+        "libs/log/src"
+      ],
+      "@app/log/*": [
+        "libs/log/src/*"
       ]
     }
   }
