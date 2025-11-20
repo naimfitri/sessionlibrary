@@ -1,9 +1,10 @@
-import { Module, DynamicModule } from '@nestjs/common';
+import { Module, DynamicModule, Global } from '@nestjs/common';
 
 export interface ElasticConfig {
     elasticUrl: string;
 }
 
+@Global()
 @Module({})
 export class ElasticConfigModule {
     static forRoot(elasticConfig?: ElasticConfig): DynamicModule {
@@ -15,7 +16,7 @@ export class ElasticConfigModule {
                     useValue: elasticConfig
                 },
             ],
-            exports: ['DB_CONFIG'],
+            exports: ['ELASTIC_CONFIG'],
         }
     };
 }

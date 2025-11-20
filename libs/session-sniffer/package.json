@@ -1,6 +1,6 @@
 {
   "name": "nestjs-session-sniffer",
-  "version": "0.0.1",
+  "version": "0.0.9",
   "private": false, 
   "main": "./index.js",
   "types": "./index.d.ts",

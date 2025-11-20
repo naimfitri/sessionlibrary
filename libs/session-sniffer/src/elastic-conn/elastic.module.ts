@@ -13,6 +13,7 @@ import { ElasticConfigModule, ElasticConfig } from './elasticconfig.module';
                 node: elasticConfig.elasticUrl,
             })
         })
-    ]
+    ],
+    exports: [ElasticsearchModule]
 })
 export class ElasticConnModule {}

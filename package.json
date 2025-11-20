@@ -9,7 +9,7 @@
     "build": "nest build",
     "build:audit": "nest build audit && powershell -Command \"Copy-Item 'libs/audit/package.json' 'dist/libs/audit/package.json'\" && powershell -Command \"Copy-Item 'libs/audit/README.md' 'dist/libs/audit/README.md'\"",
     "build:log": "nest build log && powershell -Command \"Copy-Item 'libs/log/package.json' 'dist/libs/log/package.json'\" && powershell -Command \"Copy-Item 'libs/log/README.md' 'dist/libs/log/README.md'\"",
-    "build:session-sniffer": "nest build session-sniffer && powershell -Command \"New-Item -ItemType Directory -Force -Path 'dist/libs/session-sniffer'; Copy-Item 'libs/session-sniffer/package.json' 'dist/libs/session-sniffer/package.json'\"",
+    "build:session-sniffer": "nest build session-sniffer && powershell -Command \"New-Item -ItemType Directory -Force -Path 'dist/libs/session-sniffer'; Copy-Item 'libs/session-sniffer/package.json' 'dist/libs/session-sniffer/package.json'; Copy-Item 'libs/session-sniffer/README.md' 'dist/libs/session-sniffer/README.md'\"",
     "build:audit:watch": "nest build audit --watch && powershell -Command \"Copy-Item 'libs/audit/package.json' 'dist/libs/audit/package.json' -Force\"",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\" \"libs/**/*.ts\"",
     "start": "nest start",
