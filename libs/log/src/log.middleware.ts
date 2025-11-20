@@ -17,7 +17,7 @@ export const LOG_REDIS_SERVICE = 'LOG_REDIS_SERVICE';
 export interface ActivityLogPayload {
   userId: string;
   url: string;
-  processType: string;
+  method: string;
   responseTimeMs: number;
 }
 
@@ -47,7 +47,7 @@ export class ActivityLogInterceptor implements NestInterceptor {
         const payload: ActivityLogPayload = {
           userId,
           url: req.originalUrl,
-          processType: req.method,
+          method: req.method,
           responseTimeMs
         };
 

@@ -1,6 +1,6 @@
 {
   "name": "nestjs-session-log",
-  "version": "0.0.9",
+  "version": "0.1.4",
   "private": false, 
   "main": "./index.js",
   "types": "./index.d.ts",
