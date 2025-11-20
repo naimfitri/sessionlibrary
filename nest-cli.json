@@ -35,6 +35,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/log/tsconfig.lib.json"
       }
+    },
+    "session-sniffer": {
+      "type": "library",
+      "root": "libs/session-sniffer",
+      "entryFile": "index",
+      "sourceRoot": "libs/session-sniffer/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/session-sniffer/tsconfig.lib.json"
+      }
     }
   }
 }

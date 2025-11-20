@@ -12,6 +12,7 @@
   },
   "moduleNameMapper": {
     "^@app/audit(|/.*)$": "<rootDir>/../libs/audit/src/$1",
-    "^@app/log(|/.*)$": "<rootDir>/../libs/log/src/$1"
+    "^@app/log(|/.*)$": "<rootDir>/../libs/log/src/$1",
+    "^@app/session-sniffer(|/.*)$": "<rootDir>/../libs/session-sniffer/src/$1"
   }
 }

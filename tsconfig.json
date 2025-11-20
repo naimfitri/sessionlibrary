@@ -35,6 +35,12 @@
       ],
       "@app/log/*": [
         "libs/log/src/*"
+      ],
+      "@app/session-sniffer": [
+        "libs/session-sniffer/src"
+      ],
+      "@app/session-sniffer/*": [
+        "libs/session-sniffer/src/*"
       ]
     }
   }
